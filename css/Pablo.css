@@ -1,0 +1,320 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+:root {
+    --color-primario: #0693e3;
+    --color-secundario: #e6f2ff;
+    --color-terciario: #006293;
+    --color-alternativo: #c8e3ff;
+    --color-boton-aceptar: #2cb2ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color: var(--color-terciario);
+    padding: 1vh 2vw;
+    display: flow-root;
+}
+
+main {
+    min-height: 80vh;
+}
+
+footer {
+    background-color: var(--color-terciario);
+    padding: 3vh 1vw;
+    display: flow-root;
+}
+
+/* ------------- header ------------- */
+
+header > a > img {
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+    width: 8vw;
+    float: left;
+}
+
+
+header a:hover {
+    transform: scale(1.05);
+    transition: 0.06s;
+    color: var(--color-alternativo);
+}
+
+/* ------------- footer ------------- */
+
+footer > p {
+    color: var(--color-secundario);
+    font-size: large;
+    text-align: center;
+    float: left;
+    width: 50%;
+}
+
+
+/* ------------ Mi página --------------- */
+/* ----------- Título de la página --------------- */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-left:25px;
+    padding-top:10px;
+}
+
+/* -------------- Bienvenida --------------- */
+.mensajePablo {
+    font-size: 20px;
+    margin-bottom: 20px;
+    width:150px;
+    padding-left:25px;
+}
+
+/* ---------- Botón de añadir usuario --------------- */
+.botonUsuarioPablo {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-left:25px;
+}
+
+button > a{
+    color:black;
+    text-decoration: none;
+}
+
+.botonUsuarioPablo:hover {
+    background-color: #d0d0d0;
+}
+
+/* -------------- Lista de usuarios --------------------- */
+.listaPablo {
+    list-style: none;
+    padding: 0;
+}
+
+.itemsPablo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.itemsPablo:nth-child(odd) {
+    background-color: #eeeeee;
+}
+
+/* --------------- Icono de usuario ----------------------- */
+.usuarioPablo {
+    width: 30px;
+    height: 30px;
+    background-image: url('/img/avatar.png'); 
+    background-size: cover;
+    margin-right: 10px;
+}
+
+
+/* ----------- Nombre de usuario ---------------- */
+.nombrePablo {
+    flex-grow: 1;
+    font-size: 18px;
+}
+
+/* --------------- Botones de acciones (correo y eliminar) ----------------------- */
+.botonesPablo {
+    display: flex;
+    gap: 10px;
+}
+
+.botonesPablo .emailPablo,
+.botonesPablo .borrarPablo{
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.emailPablo {
+    background-image: url('/img/correo-electronico.png'); /* Ruta de la imagen del icono de correo */
+}
+
+.borrarPablo{
+    background-image: url('/img/papelera-de-reciclaje.png'); /* Ruta de la imagen del icono de eliminar */
+}
+
+/* ------------- form ---------------- */
+.formularioPablo {
+    width:70%;
+    padding: 20px;
+    text-align: center;
+    margin:0 auto;
+    padding-top:40px;
+}
+
+/* Form Title */
+.formularioPablo h2 {
+    margin-top: 0;
+    font-weight: normal;
+    color: #333;
+    font-size: 19px;
+}
+
+/* Input fields */
+.formularioPablo input[type="text"],
+.formularioPablo input[type="email"],
+.formularioPablo input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Password Generator Button */
+.password-generatorPablo {
+    display: inline-block;
+    background-color: #555;
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 12px;
+    width: 45%;
+    box-sizing: border-box;
+}
+
+/* Enviar y Cancelar */
+.formularioPablo input[type="submit"],
+.formularioPablo input[type="reset"]{
+    width: 45%;
+    padding: 10px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+}
+#contraseñaPablo{
+    text-align: center;
+}
+.enviarPablo {
+    background-color: #555;
+}
+
+.cancelarPablo {
+    background-color: #888;
+}
+
+ /* ------------- Medias Queris -------------*/
+ /* ---- medidas moviles header y footer ---- */
+ @media (max-width: 768px) {
+
+    header > a {
+        display: block;
+        text-align: center;
+    }
+    
+    header > a > img {
+        float: none;
+        width: 20vw;
+    }
+
+}
+
+header > nav {
+    float: left;
+    margin: 4vh 3vw 4vh 3vw;
+    width: 79vw;
+}
+
+@media (max-width: 768px) {
+    
+    header > nav {
+        float: none;
+        width: 91vw;
+    }
+
+}
+
+header > nav > a {
+    margin: 0 1vw;
+    color: var(--color-secundario);
+    font-size: large;
+    text-decoration: none;
+    padding: 1.5vh 0;
+}
+
+@media (max-width: 768px) {
+    
+    header > nav > a {
+        display: block;
+        width: 100%;
+    }
+
+}
+
+ @media (max-width:800px){
+    /* ----- medidas tablet ------- */
+    /* ---- pagina del index ----- */
+    .paginaPablo{
+        width: 55%;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .usuarioPablo {
+        width: 30px;
+        height: 30px;
+        background-image: url('/img/avatar.png');
+        background-size: cover;
+        margin-right: 10px;
+    }
+
+    .botonesPablo .emailPablo,
+    .botonesPablo .borrarPablo{
+        width: 30px;
+        height: 30px;
+        background-size: cover;
+        cursor: pointer;
+    }
+
+    .botonUsuarioPablo {
+        background-color: #e0e0e0;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    /* ----- pagina de nuevos usuarios ------ */
+    .formularioPablo{
+        width:60%;
+    }
+
+    .formularioPablo h2{
+        font-size:20px;
+    }
+}
