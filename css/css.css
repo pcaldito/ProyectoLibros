@@ -1,0 +1,218 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+
+/* ----------- Título de la página --------------- */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-left:25px;
+    padding-top:10px;
+}
+
+/* -------------- Bienvenida --------------- */
+.mensaje {
+    font-size: 20px;
+    margin-bottom: 20px;
+    width:150px;
+    padding-left:25px;
+}
+
+/* ---------- Botón de añadir usuario --------------- */
+.botonUsuario {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-left:25px;
+}
+
+button > a{
+    color:black;
+    text-decoration: none;
+}
+
+.botonUsuario:hover {
+    background-color: #d0d0d0;
+}
+
+/* -------------- Lista de usuarios --------------------- */
+.lista {
+    list-style: none;
+    padding: 0;
+}
+
+.items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.items:nth-child(odd) {
+    background-color: #eeeeee;
+}
+
+/* --------------- Icono de usuario ----------------------- */
+.usuario {
+    width: 30px;
+    height: 30px;
+    background-image: url('/img/avatar.png'); 
+    background-size: cover;
+    margin-right: 10px;
+}
+
+
+/* ----------- Nombre de usuario ---------------- */
+.nombre {
+    flex-grow: 1;
+    font-size: 18px;
+}
+
+/* --------------- Botones de acciones (correo y eliminar) ----------------------- */
+.botones {
+    display: flex;
+    gap: 10px;
+}
+
+.botones .email,
+.botones .borrar{
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.email {
+    background-image: url('/img/correo-electronico.png'); /* Ruta de la imagen del icono de correo */
+}
+
+.borrar{
+    background-image: url('/img/papelera-de-reciclaje.png'); /* Ruta de la imagen del icono de eliminar */
+}
+
+/* ------------- form ---------------- */
+.formulario {
+    width:80%;
+    padding: 20px;
+    text-align: center;
+    margin:0 auto;
+    padding-top:40px;
+}
+
+/* Form Title */
+.formulario h2 {
+    margin-top: 0;
+    font-weight: normal;
+    color: #333;
+    font-size: 19px;
+}
+
+/* Input fields */
+.formulario input[type="text"],
+.formulario input[type="email"],
+.formulario input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Password Generator Button */
+.password-generator {
+    display: inline-block;
+    background-color: #555;
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 12px;
+    width: 45%;
+    box-sizing: border-box;
+}
+
+/* Enviar y Cancelar */
+.formulario input[type="submit"],
+.formulario input[type="reset"]{
+    width: 45%;
+    padding: 10px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+}
+#contraseña{
+    text-align: center;
+}
+.enviar {
+    background-color: #555;
+}
+
+.cancelar {
+    background-color: #888;
+}
+
+ /* ------------- Medias Queris -------------*/
+
+@media (max-width:800px){
+    /* ---- pagina del index ----- */
+    .pagina{
+        width: 55%;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .usuario {
+        width: 30px;
+        height: 30px;
+        background-image: url('/img/avatar.png');
+        background-size: cover;
+        margin-right: 10px;
+    }
+
+    .botones .email,
+    .botones .borrar{
+        width: 30px;
+        height: 30px;
+        background-size: cover;
+        cursor: pointer;
+    }
+
+    .botonUsuario {
+        background-color: #e0e0e0;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    /* ----- pagina de nuevos usuarios ------ */
+    .formulario{
+        width:60%;
+    }
+
+    .formulario h2{
+        font-size:20px;
+    }
+}
