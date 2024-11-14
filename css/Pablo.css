@@ -191,7 +191,8 @@ button > a{
 /* Input fields */
 .formularioPablo input[type="text"],
 .formularioPablo input[type="email"],
-.formularioPablo input[type="password"] {
+.formularioPablo input[type="password"],
+.formularioPablo select {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
