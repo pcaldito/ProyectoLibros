@@ -29,7 +29,7 @@
             $servidor = "localhost";
             $usuario = "root";
             $contrasenia = "";
-            $basedeDatos = "librosreservas";
+            $basedeDatos = "proyectoreservas";
 
             // Crear conexión
             $conexion = new mysqli($servidor, $usuario, $contrasenia, $basedeDatos);
