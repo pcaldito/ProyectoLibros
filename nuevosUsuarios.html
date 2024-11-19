@@ -19,17 +19,17 @@
         <main>
             <div class="formularioPablo">
                 <h2>NUEVOS USUARIOS</h2>
-                <form method="post">
-                    <input type="text" placeholder="Nombre" required>
-                    <input type="text" placeholder="Nombre usuario" required>
-                    <input type="email" placeholder="Correo" required>
-                    <select name="tipo" required>
+                <form method="post" action="php/altaUsuario.php">
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+                    <input type="text" name="usuario" placeholder="Nombre usuario" required>
+                    <input type="email" name="correo" placeholder="Correo" required>
+                    <select name="tipo" name="tipo" required>
                         <option name="" placeholder selected disabled>Rol del usuario</option>
                         <option name="admin" value="admin">Admin</option>
                         <option name="secret" value="secret">Secretaría</option>
                     </select>
                     <div id="contraseñaPablo">
-                        <input type="password" placeholder="Contraseña" required>
+                        <input type="password" name="contrasenia" placeholder="Contraseña" required>
                         <div class="password-generatorPablo">Generar contraseña segura</div>
                     </div>
                     <input type="submit" class="enviarPablo" value="ENVIAR">
