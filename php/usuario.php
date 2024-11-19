@@ -7,7 +7,7 @@ class Usuario {
         $servidor = "localhost";
         $usuario = "root";
         $contrasenia = "";
-        $basedeDatos = "librosreservas";
+        $basedeDatos = "proyectoreservas";
         
         $this->conexion = new mysqli($servidor, $usuario, $contrasenia, $basedeDatos);
 
@@ -24,57 +24,61 @@ class Usuario {
         // Validamos cada campo individualmente
         if (empty($_POST['nombre'])) {
             echo 'Falta el nombre<br>';
+            echo '<a href=../nuevosUsuarios.html>Volver</a>';
         } else {
             $nombre = $_POST['nombre'];
         }
 
         if (empty($_POST['usuario'])) {
             echo 'Falta el usuario<br>';
+            echo '<a href=../nuevosUsuarios.html>Volver</a>';
         } else {
             $usuario = $_POST['usuario'];
         }
 
         if (empty($_POST['correo'])) {
             echo 'Falta el correo<br>';
+            echo '<a href=../nuevosUsuarios.html>Volver</a>';
         } else {
             $correo = $_POST['correo'];
         }
 
         if (empty($_POST['tipo'])) {
             echo 'Falta el tipo de usuario<br>';
+            echo '<a href=../nuevosUsuarios.html>Volver</a>';
         } else {
             $tipo = $_POST['tipo'];
         }
 
         if (empty($_POST['contrasenia'])) {
             echo 'Falta crear una contraseña<br>';
+            echo '<a href=../nuevosUsuarios.html>Volver</a>';
         } else {
-            $contrasenia = $_POST['contrasenia'];
+            $contrasenia = password_hash($_POST['contrasenia'], PASSWORD_BCRYPT);
         }
 
-        // Mostramos la información si todos los campos están completos
+        // Si todos los datos están completos, llamamos a la función para insertar
         if ($nombre && $usuario && $correo && $tipo && $contrasenia) {
-            echo "Nombre: $nombre<br>";
-            echo "Usuario: $usuario<br>";
-            echo "Correo: $correo<br>";
-            echo "Tipo: $tipo<br>";
-            echo "Contraseña: $contrasenia<br>";
+            $this->conexion(); // Llamamos al método para conectar con la base de datos
+            $this->insertarUsuario($nombre, $contrasenia, $tipo); // Insertamos los datos
+            $this->conexion->close(); // Cerramos la conexión
         }
-
-        $this->insertarUsuario($usuario,$contrasenia,$tipo);
-
     }
 
-    public function insertarUsuario($usuario, $contrasenia, $tipo) {
+    // Método para insertar los datos en la base de datos
+    private function insertarUsuario($nombre, $contrasenia, $tipo) {
+        // Consulta SQL para insertar los datos (sin escapado)
         $sql = "INSERT INTO UsuariosPermisos (nombreAdmin, contrasenia, tipo) 
-        VALUES ('$usuario', '$contrasenia', '$tipo')";
+                VALUES ('$nombre', '$contrasenia', '$tipo')";
 
         // Ejecutamos la consulta y verificamos el resultado
         if ($this->conexion->query($sql) === TRUE) {
             echo "Registro insertado correctamente.<br>";
         } else {
             echo "Error al insertar el registro: " . $this->conexion->error . "<br>";
-        } 
+        }
+
+        echo '<a href=../index.php>Volver</a>';
     }
 }
 ?>
