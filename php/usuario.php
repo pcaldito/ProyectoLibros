@@ -78,7 +78,7 @@ class Usuario {
             echo "Error al insertar el registro: " . $this->conexion->error . "<br>";
         }
 
-        echo '<a href=../index.php>Volver</a>';
+        echo '<a href=../index.html>Volver</a>';
     }
 }
 ?>

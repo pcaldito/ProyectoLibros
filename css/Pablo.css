@@ -110,6 +110,37 @@ button > a{
 .botonUsuarioPablo:hover {
     background-color: #d0d0d0;
 }
+/* -------------- Index.html--------------------- */
+.button-container {
+    text-align: center;
+    background-color: #6baed6; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button-container button {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    background-color: #0400fa;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: #0004ff;
+    transform: scale(1.05);
+}
+
+.button-container button a {
+    color: white;
+    text-decoration: none;
+}
 
 /* -------------- Lista de usuarios --------------------- */
 .listaPablo {
