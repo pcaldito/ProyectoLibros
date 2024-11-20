@@ -19,7 +19,7 @@
     <main>
         <!-- Mensaje + boton de añadir usuario-->
         <h1>ADMINISTRADOR DE USUARIOS</h1>
-        <p class="mensajePablo">Hola, Pilar...</p>
+        <p class="mensajePablo">Bienvenido...</p>
         <button class="botonUsuarioPablo"><a href="nuevosUsuarios.html">AÑADIR NUEVO USUARIO</a></button>
         
         <!-- Lista de usuarios -->
