@@ -25,43 +25,43 @@
         <!-- Lista de usuarios -->
         <ul class="listaPablo">
             <?php
-            // Conexión a la base de datos
-            $servidor = "localhost";
-            $usuario = "root";
-            $contrasenia = "";
-            $basedeDatos = "proyectoreservas";
+                // Conexión a la base de datos
+                $servidor = "localhost";
+                $usuario = "root";
+                $contrasenia = "";
+                $basedeDatos = "proyectoreservas";
 
-            // Crear conexión
-            $conexion = new mysqli($servidor, $usuario, $contrasenia, $basedeDatos);
+                // Crear conexión
+                $conexion = new mysqli($servidor, $usuario, $contrasenia, $basedeDatos);
 
-            // Verificar conexión
-            if ($conexion->connect_error) {
-                die("Conexión fallida: " . $conexion->connect_error);
-            }
-
-            // Consulta para obtener los usuarios
-            $sql = "SELECT nombreAdmin, tipo FROM UsuariosPermisos";
-            $resultado = $conexion->query($sql);
-
-            // Verificar si hay resultados
-            if ($resultado->num_rows > 0) {
-                // Listar los usuarios
-                while ($fila = $resultado->fetch_assoc()) {
-                    echo "<li class='itemsPablo'>";
-                    echo "<div class='usuarioPablo'></div>";
-                    echo "<span class='nombrePablo'>" . htmlspecialchars($fila['nombreAdmin']) . " (" . htmlspecialchars($fila['tipo']) . ")</span>";
-                    echo "<div class='botonesPablo'>";
-                    echo "<div class='emailPablo'></div>";
-                    echo "<div class='borrarPablo'></div>";
-                    echo "</div>";
-                    echo "</li>";
+                // Verificar conexión
+                if ($conexion->connect_error) {
+                    die("Conexión fallida: " . $conexion->connect_error);
                 }
-            } else {
-                echo "<li>No hay usuarios registrados.</li>";
-            }
 
-            // Cerrar conexión
-            $conexion->close();
+                // Consulta para obtener los usuarios
+                $sql = "SELECT nombreAdmin, tipo FROM UsuariosPermisos";
+                $resultado = $conexion->query($sql);
+
+                // Verificar si hay resultados
+                if ($resultado->num_rows > 0) {
+                    // Listar los usuarios
+                    while ($fila = $resultado->fetch_assoc()) {
+                        echo "<li class='itemsPablo'>";
+                        echo "<div class='usuarioPablo'></div>";
+                        echo "<span class='nombrePablo'>" . htmlspecialchars($fila['nombreAdmin']) . " (" . htmlspecialchars($fila['tipo']) . ")</span>";
+                        echo "<div class='botonesPablo'>";
+                        echo "<div class='emailPablo'></div>";
+                        echo "<div class='borrarPablo'></div>";
+                        echo "</div>";
+                        echo "</li>";
+                    }
+                } else {
+                    echo "<li>No hay usuarios registrados.</li>";
+                }
+
+                // Cerrar conexión
+                $conexion->close();
             ?>
         </ul>
     </main>
