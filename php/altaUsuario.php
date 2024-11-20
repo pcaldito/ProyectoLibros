@@ -10,7 +10,4 @@
 
     // Llama al método mostrar para procesar el login
     $clase->comprobarInfoFormulario();
-
-    //Insertar los datos en la tabla UsuariosPermisos
-    //$clase->insertarUsuario();
 ?>
