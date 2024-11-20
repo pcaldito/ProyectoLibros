@@ -17,7 +17,7 @@
         </nav>
     </header>
     <main>
-        <!-- Mensaje + boton de añadir usuario-->
+        <!-- Mensaje + botón de añadir usuario -->
         <h1>ADMINISTRADOR DE USUARIOS</h1>
         <p class="mensajePablo">Bienvenido...</p>
         <button class="botonUsuarioPablo"><a href="nuevosUsuarios.html">AÑADIR NUEVO USUARIO</a></button>
@@ -40,7 +40,7 @@
                 }
 
                 // Consulta para obtener los usuarios
-                $sql = "SELECT nombreAdmin, tipo FROM UsuariosPermisos";
+                $sql = "SELECT idAdmin, nombreAdmin, tipo FROM UsuariosPermisos";
                 $resultado = $conexion->query($sql);
 
                 // Verificar si hay resultados
@@ -48,12 +48,11 @@
                     // Listar los usuarios
                     while ($fila = $resultado->fetch_assoc()) {
                         echo "<li class='itemsPablo'>";
-                        echo "<div class='usuarioPablo'></div>";
                         echo "<span class='nombrePablo'>" . htmlspecialchars($fila['nombreAdmin']) . " (" . htmlspecialchars($fila['tipo']) . ")</span>";
-                        echo "<div class='botonesPablo'>";
-                        echo "<div class='emailPablo'></div>";
-                        echo "<div class='borrarPablo'></div>";
-                        echo "</div>";
+                        echo "<form action='php/eliminarUsuario.php' method='POST' class='formBorrarUsuario'>";
+                        echo "<input type='hidden' name='idAdmin' value='" . htmlspecialchars($fila['idAdmin']) . "'>";
+                        echo "<button type='submit' class='botonBorrar'>Borrar</button>";
+                        echo "</form>";
                         echo "</li>";
                     }
                 } else {
