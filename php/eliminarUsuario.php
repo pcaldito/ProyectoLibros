@@ -1,41 +1,14 @@
 <?php
-    // Conexión a la base de datos
-    $servidor = "localhost";
-    $usuario = "root";
-    $contrasenia = "";
-    $basedeDatos = "proyectoreservas";
+require_once 'Usuario.php'; // Asegúrate de que la ruta al archivo es correcta
 
-    // Crear conexión
-    $conexion = new mysqli($servidor, $usuario, $contrasenia, $basedeDatos);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idAdmin'])) {
+    $idAdmin = $_POST['idAdmin']; // Obtener el ID del usuario desde el formulario
 
-    // Verificar conexión
-    if ($conexion->connect_error) {
-        die("Conexión fallida: " . $conexion->connect_error);
-    }
-
-    // Procesar solicitud POST
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idAdmin'])) {
-        $idAdmin = intval($_POST['idAdmin']); // Convertir a entero por seguridad
-
-        // Preparar la consulta de eliminación
-        $sql = "DELETE FROM UsuariosPermisos WHERE idAdmin = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $idAdmin);
-
-        if ($stmt->execute()) {
-            echo "Usuario eliminado exitosamente.";
-        } else {
-            echo "Error al eliminar el usuario: " . $conexion->error;
-        }
-        echo '<a href=../index.html>Volver</a>';
-
-        $stmt->close();
-    }
-
-    // Cerrar conexión
-    $conexion->close();
-
-    // Redirigir de vuelta a la página de usuarios
-    header("Location: ../listaUsuarios.php");
-    exit;
+    // Crear una instancia de la clase Usuario y llamar al método eliminarUsuario
+    $usuario = new Usuario();
+    $usuario->eliminarUsuario($idAdmin);
+} else {
+    echo "Solicitud no válida.";
+    echo '<a href="../listaUsuarios.php">Volver</a>';
+}
 ?>

@@ -17,68 +17,67 @@ class Usuario {
         }
     }
 
+    // Validación de datos del formulario y registro de un nuevo usuario
     public function comprobarInfoFormulario() {
-        // Inicializamos las variables
         $nombre = $usuario = $correo = $tipo = $contrasenia = "";
 
-        // Validamos cada campo individualmente
-        if (empty($_POST['nombre'])) {
-            echo 'Falta el nombre<br>';
-            echo '<a href=../nuevosUsuarios.html>Volver</a>';
-        } else {
-            $nombre = $_POST['nombre'];
+        if (empty($_POST['nombre']) || empty($_POST['usuario']) || empty($_POST['correo']) || empty($_POST['tipo']) || empty($_POST['contrasenia'])) {
+            echo 'Faltan datos obligatorios. <br>';
+            echo '<a href="../nuevosUsuarios.html">Volver</a>';
+            return;
         }
 
-        if (empty($_POST['usuario'])) {
-            echo 'Falta el usuario<br>';
-            echo '<a href=../nuevosUsuarios.html>Volver</a>';
-        } else {
-            $usuario = $_POST['usuario'];
-        }
+        $nombre = $_POST['nombre'];
+        $usuario = $_POST['usuario'];
+        $correo = $_POST['correo'];
+        $tipo = $_POST['tipo'];
+        $contrasenia = password_hash($_POST['contrasenia'], PASSWORD_BCRYPT);
 
-        if (empty($_POST['correo'])) {
-            echo 'Falta el correo<br>';
-            echo '<a href=../nuevosUsuarios.html>Volver</a>';
-        } else {
-            $correo = $_POST['correo'];
-        }
-
-        if (empty($_POST['tipo'])) {
-            echo 'Falta el tipo de usuario<br>';
-            echo '<a href=../nuevosUsuarios.html>Volver</a>';
-        } else {
-            $tipo = $_POST['tipo'];
-        }
-
-        if (empty($_POST['contrasenia'])) {
-            echo 'Falta crear una contraseña<br>';
-            echo '<a href=../nuevosUsuarios.html>Volver</a>';
-        } else {
-            $contrasenia = password_hash($_POST['contrasenia'], PASSWORD_BCRYPT);
-        }
-
-        // Si todos los datos están completos, llamamos a la función para insertar
-        if ($nombre && $usuario && $correo && $tipo && $contrasenia) {
-            $this->conexion(); // Llamamos al método para conectar con la base de datos
-            $this->insertarUsuario($nombre, $contrasenia, $tipo); // Insertamos los datos
-            $this->conexion->close(); // Cerramos la conexión
-        }
+        $this->conexion();
+        $this->insertarUsuario($nombre, $contrasenia, $tipo);
+        $this->conexion->close();
     }
 
-    // Método para insertar los datos en la base de datos
+    // Método para insertar un usuario en la base de datos
     private function insertarUsuario($nombre, $contrasenia, $tipo) {
-        // Consulta SQL para insertar los datos (sin escapado)
         $sql = "INSERT INTO UsuariosPermisos (nombreAdmin, contrasenia, tipo) 
                 VALUES ('$nombre', '$contrasenia', '$tipo')";
 
-        // Ejecutamos la consulta y verificamos el resultado
         if ($this->conexion->query($sql) === TRUE) {
             echo "Registro insertado correctamente.<br>";
         } else {
             echo "Error al insertar el registro: " . $this->conexion->error . "<br>";
         }
 
-        echo '<a href=../index.html>Volver</a>';
+        echo '<a href="../index.html">Volver</a>';
+    }
+
+    // Método para eliminar un usuario de la base de datos
+    public function eliminarUsuario($idAdmin) {
+        $this->conexion();
+
+        // Validamos que el idAdmin sea un número entero
+        $idAdmin = intval($idAdmin);
+        if ($idAdmin <= 0) {
+            echo "ID inválido.";
+            return;
+        }
+
+        // Preparamos la consulta para eliminar el usuario
+        $sql = "DELETE FROM UsuariosPermisos WHERE idAdmin = ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("i", $idAdmin);
+
+        if ($stmt->execute()) {
+            echo "Usuario eliminado correctamente.<br>";
+        } else {
+            echo "Error al eliminar el usuario: " . $this->conexion->error . "<br>";
+        }
+
+        $stmt->close();
+        $this->conexion->close();
+
+        echo '<a href="../listaUsuarios.php">Volver</a>';
     }
 }
 ?>
