@@ -41,42 +41,54 @@ class Usuario {
     // Método para insertar un usuario en la base de datos
     private function insertarUsuario($nombre, $contrasenia, $tipo) {
         $sql = "INSERT INTO UsuariosPermisos (nombreAdmin, contrasenia, tipo) 
-                VALUES ('$nombre', '$contrasenia', '$tipo')";
-
-        if ($this->conexion->query($sql) === TRUE) {
-            echo "Registro insertado correctamente.<br>";
+                VALUES (?, ?, ?)";
+    
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("sss", $nombre, $contrasenia, $tipo);
+    
+        if ($stmt->execute()) {
+            // Registro insertado correctamente, redirigir
+            $stmt->close();
+            $this->conexion->close();
+            header("Location: ../listaUsuarios.php");
+            exit(); // Detener el script tras la redirección
         } else {
             echo "Error al insertar el registro: " . $this->conexion->error . "<br>";
         }
-
-        echo '<a href="../index.html">Volver</a>';
+    
+        $stmt->close();
+        $this->conexion->close();
     }
+    
 
     // Método para eliminar un usuario de la base de datos
     public function eliminarUsuario($idAdmin) {
         $this->conexion();
-
+    
         // Validamos que el idAdmin sea un número entero
         $idAdmin = intval($idAdmin);
         if ($idAdmin <= 0) {
             echo "ID inválido.";
             return;
         }
-
+    
+        // Preparamos la consulta para eliminar el usuario
         $sql = "DELETE FROM UsuariosPermisos WHERE idAdmin = ?";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bind_param("i", $idAdmin);
-
+    
         if ($stmt->execute()) {
-            echo "Usuario eliminado correctamente.<br>";
+            $stmt->close();
+            $this->conexion->close();
+            header("Location: ../listaUsuarios.php");
+            exit();
         } else {
             echo "Error al eliminar el usuario: " . $this->conexion->error . "<br>";
         }
-
+    
         $stmt->close();
         $this->conexion->close();
-
-        echo '<a href="../listaUsuarios.php">Volver</a>';
     }
+    
 }
 ?>
