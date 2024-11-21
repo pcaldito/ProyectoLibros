@@ -63,7 +63,6 @@ class Usuario {
             return;
         }
 
-        // Preparamos la consulta para eliminar el usuario
         $sql = "DELETE FROM UsuariosPermisos WHERE idAdmin = ?";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bind_param("i", $idAdmin);
